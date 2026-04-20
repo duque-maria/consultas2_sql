@@ -83,3 +83,42 @@
 ` SELECT e.nombre_empleado, e.apellidos_empleado FROM Empleado e INNER JOIN Departamento d ON e.id_departamento = d.id_departamento WHERE d.presupuesto_departamento > 100000000; `
 
 ![Consulta 11](img/consulta11.png "Consulta 11")
+
+
+
+# Cláusula Inner Join
+
+Imagina que el INNER JOIN es como un organizador de eventos que solo deja pasar a las personas que tienen una invitación válida para una mesa específica. En nuestro ejemplo:
+
+Tenemos la Tabla Departamento (con su ID, nombre y presupuesto).
+
+Tenemos la Tabla Empleado (con su ID, nombre, apellido y el ID del departamento al que pertenece).
+
+¿Qué hace el INNER JOIN?
+
+Busca coincidencias exactas entre la columna id_departamento de ambas tablas. Es como armar un rompecabezas:
+
+Ana (Dept 1) coincide con el departamento de Ventas. ¡Se unen en el resultado!
+
+Juan (Dept 1) también coincide con Ventas. ¡Se unen!
+
+Pedro (Dept 2) coincide con Marketing. ¡Se unen!
+
+Luisa (Dept 4): Aquí está el truco. Como no existe un departamento con ID 4 en la tabla Departamento, Luisa no aparece en el resultado final. El INNER JOIN es estricto y solo muestra lo que coincide perfectamente en ambos lados.
+
+![Inner Join](img/inner_join.png "Inner Join")
+
+
+
+# Sub Consultas
+Las dos tablas de entrada: En el lado izquierdo, mostramos las tablas Departamento (con presupuestos) y Empleado. Ambas tienen datos de ejemplo que los estudiantes pueden relacionar fácilmente.
+
+El PROCESO visual: Un gran diagrama de flujo central divide el concepto en dos pasos claros:
+
+PASO 1 (SUBCONSULTA): Ejecuta una consulta interna para obtener una lista de id_departamento de aquellos departamentos con un presupuesto mayor a 100,000. El resultado es una lista limpia: (20, 30).
+
+PASO 2 (CONSULTA PRINCIPAL): La consulta externa utiliza este resultado para filtrar la tabla Empleado. En lugar de buscar IDs de forma manual, dice: "Dame a los empleados cuyo id_departamento esté IN (dentro) de esa lista de grandes presupuestos."
+
+El RESULTADO FINAL: Una tabla limpia que muestra solo los nombres y apellidos de los empleados que cumplen la condición: Luis, Marta y Juan.
+
+![Sub Consultas](img/subconsultas.png "Sub Consultas")
